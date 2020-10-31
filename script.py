@@ -12,11 +12,10 @@ import arm
 import asmstructs
 import symstack
 import codestructs
-import debugprint
-from debugprint import printf
+import fprint
+from fprint import printf
 
-
-imp.reload(debugprint)
+imp.reload(fprint)
 imp.reload(arm)
 imp.reload(asmstructs)
 imp.reload(symstack)
@@ -27,7 +26,7 @@ asmstructs.operand
 
 print("Hello from VSCode")
 
-f = debugprint.fopen('D:\\VUZ\\NIR\\idapython\\output.txt')
+f = fprint.fopen('D:\\VUZ\\NIR\\idapython\\output.txt')
 print >> f, 'Helo'
 
 class Analyzer():
@@ -113,7 +112,7 @@ printf(a.back_symbol_propagation(a.static_analyze()))
 
 
 
-debugprint.fclose()
+fprint.fclose()
 
 #sys.stdout.close()
 #sys.stdout = stdout
