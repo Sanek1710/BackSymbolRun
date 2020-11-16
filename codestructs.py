@@ -4,7 +4,7 @@ import symstack
 from sympy import Symbol, Function, Eq, Ne, IndexedBase
 import arm
 
-from debugprint import printf
+from fprint import printf
 
 class block():
     def __init__(self, ea):
@@ -25,7 +25,7 @@ class block():
     def __len__(self):
         return len(self.code)
 
-    def __str__(self, prefix='', postfix='', w=68):
+    def __str__(self, prefix='', postfix='', w=54):
         endline = '|' + postfix + '\n' + prefix
         result = prefix
         result +=  ' ' + '_'*w + ' ' + postfix + '\n' + prefix
@@ -139,7 +139,7 @@ class function():
         self.simplify_restriction()
         return self.C, self.SP_C
 
-    def __str__(self, w=80):
+    def __str__(self, w=60):
         result = '  ' + '_'*(w) + '\n'
         result += ' / ' + '%08x: '%self.startea + '%-*s'%(w-12, self.name) + '/\n'
         result += '/_' + '_'*(w - 2) + '/\n'

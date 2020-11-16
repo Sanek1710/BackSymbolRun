@@ -26,7 +26,7 @@ asmstructs.operand
 
 print("Hello from VSCode")
 
-f = fprint.fopen('D:\\VUZ\\NIR\\idapython\\output.txt')
+f = fprint.fopen('D:\\VUZ\\NIR\\idapython_output\\output.txt')
 print >> f, 'Helo'
 
 class Analyzer():
@@ -92,25 +92,20 @@ class Analyzer():
     def static_analyze(self):
         path = []
         #path.append(0x0620)
-        path.append(0x05c4)
+        path.append(0x0644)
         return path
 
     def back_symbol_propagation(self, path):
-        printf(self.dfunctions[0x620])
-        printf(self.dfunctions[0x5c4])
-        self.dfunctions[0x620].codeblocks[0].refs_to_it = [(True, 0)]
-        printf(self.dfunctions[0x620].create_restrictions(0x660))
+        printf(self.dfunctions[0x0644])
+        printf(self.dfunctions[0x0644].create_restrictions(0x67c))
         C, Stack_C = self.dfunctions.get(path[0]).create_restrictions()
         return C, Stack_C
-
 
 
 a = Analyzer()
 
 
 printf(a.back_symbol_propagation(a.static_analyze()))
-
-
 
 fprint.fclose()
 

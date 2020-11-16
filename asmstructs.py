@@ -2,7 +2,7 @@ import idc
 import re
 from sympy import Symbol, Integer
 from ctypes import c_int64
-from debugprint import printf
+from fprint import printf
 
 class operand():
     def __init__(self, name, op_type, value):
@@ -26,13 +26,14 @@ class operand():
     
     def __str__(self):
         if self.type == idc.o_imm:
-            result = str(self.value)
+            result = hex(self.value)[0:-1]
         elif self.type in [idc.o_far, idc.o_near]:
             result = '%08x'%self.value
         elif self.type == idc.o_displ:
             result = str(self.value)
         else:
             result = str(self.value)
+        #result = '(%d)'%self.type + result
         return result
 
     def __repr__(self):
@@ -49,7 +50,8 @@ class command():
         self.operands.append(value)
 
     def __str__(self):
-        return '%08x:   %-4s    '%(self.ea, self.name) + str(self.operands)
+        op_str_list = [str(o) for o in self.operands]
+        return '%08x:   %-4s    '%(self.ea, self.name) + ', '.join(op_str_list)
 
     def __repr__(self):
         return self.__str__()
